@@ -1,0 +1,20 @@
+# Cloudflare-specific files
+wrangler.jsonc
+.open-next/
+cloudflare-env.d.ts
+open-next.config.ts
+.dev.vars
+
+# Development files
+.storybook/
+docs/
+scripts/
+.github/
+.husky/
+.vscode/
+
+# Build artifacts
+.next/
+generated
+node_modules/
+*.log
