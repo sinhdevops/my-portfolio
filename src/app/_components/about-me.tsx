@@ -18,18 +18,16 @@ function AboutMeSection() {
 					<div className="space-y-12">
 						<div className="relative rounded-2xl border border-zinc-700/50 bg-zinc-800/50 p-8 backdrop-blur-sm">
 							<p className="text-lg text-zinc-300">
-								I&apos;m a passionate software engineer with experience building web applications and
-								digital products. I specialize in frontend development with React and Next.js, but
-								I&apos;m also comfortable working with backend technologies like Node.js and NestJS.
+								I&apos;m a Frontend Developer specializing in React and Next.js, focused on crafting
+								modern, responsive, and scalable web applications.
 							</p>
 							<p className="mt-4 text-lg text-zinc-300">
-								My journey in tech started with a strong foundation in software development. I&apos;ve
-								worked with enthusiams friends to create intuitive, performant, and accessible digital
-								experiences.
+								I&apos;m love building intuitive UIs with attention to performance, accessibility, and
+								great user experience, while collaborating closely with designers and backend teams.
 							</p>
 							<p className="mt-4 text-lg text-zinc-300">
-								When I&apos;m not coding, you can find me exploring new technologies, contributing to
-								open-source projects, and staying up-to-date with the latest industry trends.
+								Beyond coding, I explore emerging technologies, contribute to open-source, and
+								continuously improve my skills to stay ahead in the industry.
 							</p>
 
 							<div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
