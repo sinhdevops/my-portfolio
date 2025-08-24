@@ -1,6 +1,6 @@
 import { SectionHeading } from "@/components/section-heading";
+import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
-import { Button } from "react-day-picker";
 import Link from "next/link";
 
 function AboutMeSection() {
@@ -52,11 +52,7 @@ function AboutMeSection() {
 							</div>
 
 							<div className="mt-8">
-								<Link
-									href="/lethanhtrung-webdeveloper-cv.pdf"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
+								<Link href="/sinhlv-cv-frontend.pdf" target="_blank" rel="noopener noreferrer">
 									<Button className="bg-zinc-800 text-white hover:bg-zinc-700">
 										<Download className="mr-2 h-4 w-4" />
 										Download Resume

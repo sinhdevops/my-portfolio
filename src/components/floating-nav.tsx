@@ -94,11 +94,7 @@ export function FloatingNav() {
 								</Link>
 							))}
 							<div className="ml-2 flex items-center gap-2">
-								<Link
-									href="/lethanhtrung-webdeveloper-cv.pdf"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
+								<Link href="/sinhlv-cv-frontend.pdf" target="_blank" rel="noopener noreferrer">
 									<Button size="sm" variant="primary" className="rounded-full">
 										Resume
 									</Button>
@@ -134,7 +130,7 @@ export function FloatingNav() {
 							</Link>
 						))}
 						<div className="mt-6 flex flex-col items-center gap-4">
-							<Link href="/lethanhtrung-webdeveloper-cv.pdf" target="_blank" rel="noopener noreferrer">
+							<Link href="/sinhlv-cv-frontend.pdf" target="_blank" rel="noopener noreferrer">
 								<Button variant="primary">Resume</Button>
 							</Link>
 						</div>

@@ -10,9 +10,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import ReactQueryProvider from "@/providers/react-query-provider";
 
-const BASE_URL =
-	process.env.NEXT_PUBLIC_BASE_URL ??
-	(process.env.NODE_ENV === "production" ? "https://xiro-portfolio.vercel.app" : "http://localhost:3000");
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(BASE_URL),
