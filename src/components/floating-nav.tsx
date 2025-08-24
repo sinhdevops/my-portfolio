@@ -1,6 +1,6 @@
 "use client";
 
-import { AuthButton } from "@/components/auth-button";
+// import { AuthButton } from "@/components/auth-button";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 const navItems = [
 	{ name: "About", href: "#about" },
-	{ name: "Skills", href: "#skills" },
+	// { name: "Skills", href: "#skills" },
 	{ name: "Projects", href: "#projects" },
 	{ name: "Experience", href: "#experience" },
 	{ name: "Contact", href: "#contact" },
@@ -64,7 +64,7 @@ export function FloatingNav() {
 								<span className="text-white">Kay</span>
 							</Link>
 							<div className="ml-2 flex flex-shrink-0 items-center gap-2">
-								<AuthButton />
+								{/* <AuthButton /> */}
 								<Button
 									variant="ghost"
 									size="icon"
@@ -103,7 +103,7 @@ export function FloatingNav() {
 										Resume
 									</Button>
 								</Link>
-								<AuthButton />
+								{/* <AuthButton /> */}
 							</div>
 						</div>
 					)}

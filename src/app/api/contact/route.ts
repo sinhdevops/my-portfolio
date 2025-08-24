@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
 		// Send email using Resend
 		const { data, error } = await resend.emails.send({
 			from: "Contact Form <onboarding@resend.dev>",
-			to: ["lethanhtrung.trungle@gmail.com"],
+			to: ["lesinh3005@gmail.com"],
 			subject: `Contact Form: ${subject}`,
 			html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
           </div>
         </div>
       `,
-			replyTo: email, // This allows you to reply directly to the sender
+			replyTo: email,
 		});
 
 		if (error) {

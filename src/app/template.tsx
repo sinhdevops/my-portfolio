@@ -66,7 +66,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 										font.className,
 									)}
 								>
-									{"XIRO THE DEV".split("").map((char, i) => (
+									{"Em Sinh Kay".split("").map((char, i) => (
 										<motion.span
 											key={i}
 											initial={{ opacity: 0, y: 50 }}
@@ -105,7 +105,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 								animate={{ opacity: 1 }}
 								transition={{ delay: 2.4, duration: 0.6 }}
 							>
-								FULL STACK & DISCORD BOT DEVELOPER
+								FRONTEND DEVELOPER
 							</motion.p>
 						</motion.div>
 

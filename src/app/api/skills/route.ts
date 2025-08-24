@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { createGitHubAPI } from "@/lib/github-api";
 import { mapRepositoriesToSkills } from "@/lib/skills-mapper";
 
-const DEFAULT_USERNAME = "xirothedev"; // Default GitHub username
+const DEFAULT_USERNAME = "sinhdevops"; // Default GitHub username
 
 export async function GET(request: Request) {
 	try {

@@ -3,7 +3,7 @@ import { SiZalo } from "react-icons/si";
 
 export const CONTACTS = [
 	{
-		href: "https://github.com/levansinh",
+		href: "https://github.com/sinhdevops",
 		target: "_blank",
 		rel: "noopener noreferrer",
 		icon: <Github className="h-5 w-5" />,

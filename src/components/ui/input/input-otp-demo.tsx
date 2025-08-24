@@ -4,7 +4,7 @@ import type { SlotProps } from "input-otp";
 
 import { useState } from "react";
 
-import { Button } from "./button";
+import { Button } from "../button";
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "./input-otp";
 
 interface InputOTPDemoProps {

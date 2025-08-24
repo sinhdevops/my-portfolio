@@ -10,42 +10,36 @@ export default function Footer() {
 				<div>
 					<Link href="/" className="text-xl font-bold">
 						<span className="bg-linear-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-							Xiro{" "}
+							Em Sinh {""}
 						</span>
-						<span className="text-white">The Dev</span>
+						<span className="text-white">Kay</span>
 					</Link>
 					<p className="mt-2 text-sm text-zinc-500">
-						© {new Date().getFullYear()} Xiro The Dev. All rights reserved.
+						© {new Date().getFullYear()} Em Sinh Kay. All rights reserved.
 					</p>
 				</div>
 				<div className="flex gap-4">
 					{[
 						{
-							href: "https://github.com/xirothedev",
+							href: "https://github.com/sinhdevops",
 							icon: <Github className="h-5 w-5" />,
 							label: "GitHub",
 							external: true,
 						},
 						{
-							href: "https://www.linkedin.com/in/xirothedev/",
-							icon: <Linkedin className="h-5 w-5" />,
-							label: "LinkedIn",
-							external: true,
-						},
-						{
-							href: "mailto:lethanhtrung.trungle@gmail.com",
+							href: "mailto:lesinh3005@gmail.com",
 							icon: <Mail className="h-5 w-5" />,
 							label: "Email",
 							external: false,
 						},
 						{
-							href: "https://discord.com/users/1216624112139632711",
+							href: "https://zalo.me/0325610016",
 							icon: <MessageCircle className="h-5 w-5" />,
-							label: "Discord",
+							label: "Zalo",
 							external: true,
 						},
 						{
-							href: "https://www.facebook.com/xirothedev",
+							href: "https://www.facebook.com/sinh.levan.39589",
 							icon: <Facebook className="h-5 w-5" />,
 							label: "Facebook",
 							external: true,
@@ -66,24 +60,6 @@ export default function Footer() {
 							</Button>
 						</Link>
 					))}
-				</div>
-			</div>
-
-			{/* Navigation Links */}
-			<div className="relative z-10 container mt-8 border-t border-zinc-800 pt-8">
-				<div className="flex flex-col items-center gap-6 md:flex-row md:justify-center md:gap-12">
-					<div className="flex flex-wrap justify-center gap-6 text-sm">
-						{[
-							{ href: "/", label: "Home" },
-							{ href: "/projects", label: "Projects" },
-							// { href: "/blogs", label: "Blogs" },
-							// { href: "/contact", label: "Contact" },
-						].map(({ href, label }) => (
-							<Link key={label} href={href} className="text-zinc-400 transition-colors hover:text-white">
-								{label}
-							</Link>
-						))}
-					</div>
 				</div>
 			</div>
 		</footer>

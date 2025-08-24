@@ -21,7 +21,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { Roles } from "@/types/globals";
+import { Roles } from "@/@types/globals";
 
 import { removeRole, setRole } from "../actions";
 

@@ -1,6 +1,6 @@
 import { Octokit, RestEndpointMethodTypes } from "@octokit/rest";
 
-import { MultipleRepositoriesReport, MultipleRepositoriesResponse } from "@/types/github";
+import { MultipleRepositoriesReport, MultipleRepositoriesResponse } from "@/@types/github";
 
 import { prisma } from "./db";
 import { CACHE_CONFIGS, generateCacheKey, githubCache } from "./github-cache";

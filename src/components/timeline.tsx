@@ -6,54 +6,15 @@ import { cn } from "@/lib/utils";
 
 const experiences = [
 	{
-		title: "System Architect",
-		company: "The Terminal Viet Nam",
-		period: "2025 - Now",
-		description:
-			"Building a full-stack social media platform with microservices architecture. Using NestJS, GraphQL, Prisma, Redis and Docker. Learning about distributed system design and scalability.",
-		technologies: ["NestJS", "GraphQL", "Prisma", "Redis", "Docker", "Microservices"],
-		phase: "Phase V: Towards Large Scale",
-		phaseDescription: "Transitioning from developer to system architect",
-	},
-	{
-		title: "Full-Stack Developer",
-		company: "Personal Projects",
-		period: "2025 - Now",
-		description:
-			"Currently diving deep into both frontend and backend development simultaneously. Gradually becoming proficient in frontend technologies such as React/Next.js, TypeScript, TailwindCSS, and Shadcn UI, while also developing the backend using Node.js, Express, NestJS, and modern backend tools.",
-		technologies: ["React", "Next.js", "TypeScript", "TailwindCSS", "Shadcn UI", "Node.js", "Express", "NestJs"],
-		phase: "Phase IV: Simultaneous Deep Learning",
-		phaseDescription: "Parallel development of frontend and backend",
-	},
-	{
 		title: "Frontend Developer",
-		company: "Personal Projects",
-		period: "2024 - 2025",
+		company: "TNHH MTV LIFT SOFTWARE",
+		period: "9/2023 - 3/2025",
 		description:
-			"Specializing in frontend development with React and Next.js. Focusing on modern UI/UX, accessibility and performance. Building design systems with Shadcn UI and TailwindCSS.",
-		technologies: ["React", "Next.js", "TypeScript", "TailwindCSS", "Shadcn UI"],
-		phase: "Phase III: Frontend Specialization",
-		phaseDescription: "Mastering the modern React ecosystem",
-	},
-	{
-		title: "Backend Developer",
-		company: "Discord Ecosystem",
-		period: "2024 - Now",
-		description:
-			"Starting with Discord bot development to learn backend. Building music bots, server management bots and Discord.js v14 templates. Learning event-driven architecture, API integration and database management.",
-		technologies: ["Node.js", "TypeScript", "PostgreSQL", "Discord.js", "API Integration"],
-		phase: "Phase II: Backend Exploration",
-		phaseDescription: "From Discord.js to backend development",
-	},
-	{
-		title: "Basic Web Developer",
-		company: "Elaina Team",
-		period: "24/07/2023 - 2024",
-		description:
-			"Starting the programming journey with courses from F8. Learning HTML, CSS, JavaScript basics and React fundamentals. Building a solid foundation for web development.",
-		technologies: ["HTML", "CSS", "JavaScript", "React Basics"],
-		phase: "Phase I: Web Foundation",
-		phaseDescription: "Beginning with basic web development",
+			"Developed and maintained advertising websites and admin dashboards for content and data management. Focused on optimizing user interfaces and enhancing user experience while ensuring performance and system stability. Collaborated on building new features, integrating APIs, and streamlining frontend development workflows.",
+		technologies: ["ReactJS", "React Query", "CoreUI", "NextUI", "Shadcn UI", "TypeScript", "TailwindCSS"],
+		phase: "Phase I: Frontend Developer",
+		phaseDescription:
+			"Transitioned from a frontend developer to building a deeper understanding of system architecture and product scalability.",
 	},
 ];
 
@@ -168,19 +129,21 @@ export function Timeline() {
 					<div>
 						<h4 className="mb-2 font-semibold text-purple-300">Key Lessons:</h4>
 						<ul className="space-y-2">
-							<li>• Start with a solid foundation (HTML/CSS/JS)</li>
-							<li>• Learn backend through real projects (Discord bots)</li>
-							<li>• Develop frontend and backend simultaneously</li>
-							<li>• Let ambitious projects drive learning</li>
+							<li>• Begin by mastering core web fundamentals (HTML, CSS, JavaScript)</li>
+							<li>
+								• Gain backend experience early through simple real-world projects (e.g., small APIs,
+								hobby apps)
+							</li>
+							<li>• Build both frontend and backend in parallel to understand full-stack workflows</li>
+							<li>• Take on challenging projects to push beyond comfort zones and accelerate growth</li>
 						</ul>
 					</div>
 					<div>
 						<h4 className="mb-2 font-semibold text-pink-300">Development Model:</h4>
 						<ul className="space-y-2">
-							<li>• Systematic learning from basics to advanced</li>
-							<li>• Apply knowledge to real projects</li>
-							<li>• Specialize and expand simultaneously</li>
-							<li>• From web developer to system architect</li>
+							<li>• Progress systematically from foundational knowledge to advanced concepts</li>
+							<li>• Continuously apply what you learn in real, production-like projects</li>
+							<li>• Deepen expertise in a primary area while exploring adjacent technologies</li>
 						</ul>
 					</div>
 				</div>

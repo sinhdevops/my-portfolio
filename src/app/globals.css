@@ -213,13 +213,15 @@
 }
 
 ::-webkit-scrollbar-thumb {
-	background: linear-gradient(135deg, #a855f7, #ec4899); /* purple-500 to pink-500 */
+	/* background: linear-gradient(135deg, #a855f7, #ec4899);  */
+	background:#fff; /*white*/
 	border-radius: 4px;
 	transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(135deg, #9333ea, #db2777); /* purple-600 to pink-600 */
+	/* background: linear-gradient(135deg, #9333ea, #db2777);  */
+	background:#fff; /*white*/
 	transform: scale(1.05);
 }
 
@@ -230,7 +232,7 @@
 /* Firefox scrollbar */
 * {
 	scrollbar-width: thin;
-	scrollbar-color: #a855f7 #18181b;
+	scrollbar-color: #fff #18181b;
 }
 
 [data-support-yes],

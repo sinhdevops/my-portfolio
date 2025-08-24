@@ -5,12 +5,20 @@ import { useToast } from "@/hooks/use-toast";
 import { Send } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Textarea } from "./ui/textarea";
+import { http } from "@/config/http.config";
+import { useMutation } from "@tanstack/react-query";
+import { InputValidation } from "./ui/input";
+import { TextareaValidation } from "./ui/textarea";
+
+const INITIAL_VALUES = {
+	name: "",
+	email: "",
+	subject: "",
+	message: "",
+};
 
 const contactFormSchema = z.object({
 	name: z.string().min(2, "Name must be at least 2 characters").max(50, "Name must be less than 50 characters"),
@@ -35,61 +43,47 @@ interface ApiResponse {
 
 export function ContactForm() {
 	const { toast } = useToast();
-	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+	const uploadContact = async ({ ...payload }) => {
+		const response = await http.post<ApiResponse>("/api/contact", {
+			payload,
+		});
+
+		return response;
+	};
+
+	const { mutate, isPending } = useMutation({ mutationFn: uploadContact });
+
+	const methods = useForm<ContactFormData>({
+		resolver: zodResolver(contactFormSchema),
+		defaultValues: INITIAL_VALUES,
+	});
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 		reset,
-	} = useForm<ContactFormData>({
-		resolver: zodResolver(contactFormSchema),
-		defaultValues: {
-			name: "",
-			email: "",
-			subject: "",
-			message: "",
-		},
-	});
+	} = methods;
 
-	const onSubmit = async (data: ContactFormData) => {
-		setIsSubmitting(true);
-
-		try {
-			const response = await fetch("/api/contact", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(data),
-			});
-
-			const result = (await response.json()) as ApiResponse;
-
-			if (response.ok) {
+	const submitHandler = handleSubmit(async (data: ContactFormData) => {
+		mutate(data, {
+			onSuccess: () => {
 				toast({
 					title: "Message sent!",
 					description: "Thanks for reaching out. I'll get back to you soon.",
 				});
 				reset();
-			} else {
+			},
+			onError: (result: ApiResponse) => {
 				toast({
 					title: "Error",
 					description: result.error || "Failed to send message. Please try again.",
 					variant: "destructive",
 				});
-			}
-		} catch (error) {
-			console.error("Contact form error:", error);
-			toast({
-				title: "Error",
-				description: "Something went wrong. Please try again later.",
-				variant: "destructive",
-			});
-		} finally {
-			setIsSubmitting(false);
-		}
-	};
+			},
+		});
+	});
 
 	return (
 		<motion.div
@@ -104,99 +98,73 @@ export function ContactForm() {
 				<div className="relative">
 					<h3 className="mb-6 text-2xl font-bold">Send Me a Message</h3>
 
-					<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-						<div className="space-y-2">
-							<Label htmlFor="name" className="text-sm font-medium text-zinc-200">
-								Name
-							</Label>
-							<Input
-								id="name"
-								placeholder="Your Name"
-								{...register("name")}
-								aria-invalid={!!errors.name}
-								aria-describedby={errors.name ? "name-error" : undefined}
-								disabled={isSubmitting}
-								className="border-zinc-700 bg-zinc-900/50 focus:border-purple-500 focus:ring-purple-500/20"
-							/>
-							{errors.name && (
-								<p id="name-error" className="text-sm text-red-400">
-									{errors.name.message}
-								</p>
-							)}
-						</div>
+					<FormProvider {...methods}>
+						<form onSubmit={submitHandler} className="space-y-6">
+							<div className="space-y-2">
+								<InputValidation
+									label="Name"
+									id="name"
+									placeholder="Your Name"
+									{...register("name")}
+									aria-invalid={!!errors.name}
+									aria-describedby={errors.name ? "name-error" : undefined}
+									disabled={isPending}
+									className="border-zinc-700 bg-zinc-900/50 focus:border-purple-500 focus:ring-purple-500/20"
+								/>
+							</div>
 
-						<div className="space-y-2">
-							<Label htmlFor="email" className="text-sm font-medium text-zinc-200">
-								Email
-							</Label>
-							<Input
-								id="email"
-								type="email"
-								placeholder="Your Email"
-								{...register("email")}
-								aria-invalid={!!errors.email}
-								aria-describedby={errors.email ? "email-error" : undefined}
-								disabled={isSubmitting}
-								className="border-zinc-700 bg-zinc-900/50 focus:border-purple-500 focus:ring-purple-500/20"
-							/>
-							{errors.email && (
-								<p id="email-error" className="text-sm text-red-400">
-									{errors.email.message}
-								</p>
-							)}
-						</div>
+							<div className="space-y-2">
+								<InputValidation
+									label="Email"
+									id="email"
+									type="email"
+									name="email"
+									placeholder="Your Email"
+									aria-invalid={!!errors.email}
+									aria-describedby={errors.email ? "email-error" : undefined}
+									disabled={isPending}
+									className="border-zinc-700 bg-zinc-900/50 focus:border-purple-500 focus:ring-purple-500/20"
+								/>
+							</div>
 
-						<div className="space-y-2">
-							<Label htmlFor="subject" className="text-sm font-medium text-zinc-200">
-								Subject
-							</Label>
-							<Input
-								id="subject"
-								placeholder="Subject"
-								{...register("subject")}
-								aria-invalid={!!errors.subject}
-								aria-describedby={errors.subject ? "subject-error" : undefined}
-								disabled={isSubmitting}
-								className="border-zinc-700 bg-zinc-900/50 focus:border-purple-500 focus:ring-purple-500/20"
-							/>
-							{errors.subject && (
-								<p id="subject-error" className="text-sm text-red-400">
-									{errors.subject.message}
-								</p>
-							)}
-						</div>
+							<div className="space-y-2">
+								<InputValidation
+									id="subject"
+									name="subject"
+									label="Subject"
+									placeholder="Subject"
+									aria-invalid={!!errors.subject}
+									aria-describedby={errors.subject ? "subject-error" : undefined}
+									disabled={isPending}
+									className="border-zinc-700 bg-zinc-900/50 focus:border-purple-500 focus:ring-purple-500/20"
+								/>
+							</div>
 
-						<div className="space-y-2">
-							<Label htmlFor="message" className="text-sm font-medium text-zinc-200">
-								Message
-							</Label>
-							<Textarea
-								id="message"
-								placeholder="Your Message"
-								rows={5}
-								{...register("message")}
-								aria-invalid={!!errors.message}
-								aria-describedby={errors.message ? "message-error" : undefined}
-								disabled={isSubmitting}
-								className="border-zinc-700 bg-zinc-900/50 focus:border-purple-500 focus:ring-purple-500/20"
-							/>
-							{errors.message && (
-								<p id="message-error" className="text-sm text-red-400">
-									{errors.message.message}
-								</p>
-							)}
-						</div>
+							<div className="space-y-2">
+								<TextareaValidation
+									id="message"
+									label="Message"
+									placeholder="Your Message"
+									rows={5}
+									name="message"
+									aria-invalid={!!errors.message}
+									aria-describedby={errors.message ? "message-error" : undefined}
+									disabled={isPending}
+									className="border-zinc-700 bg-zinc-900/50 focus:border-purple-500 focus:ring-purple-500/20"
+								/>
+							</div>
 
-						<Button type="submit" variant="primary" className="w-full" disabled={isSubmitting}>
-							{isSubmitting ? (
-								<>Sending...</>
-							) : (
-								<>
-									Send Message <Send className="ml-2 h-4 w-4" />
-								</>
-							)}
-						</Button>
-					</form>
+							<Button type="submit" variant="primary" className="w-full" disabled={isPending}>
+								{isPending ? (
+									<>Sending...</>
+								) : (
+									<>
+										Send Message <Send className="ml-2 h-4 w-4" />
+									</>
+								)}
+							</Button>
+						</form>
+					</FormProvider>
 				</div>
 			</div>
 		</motion.div>

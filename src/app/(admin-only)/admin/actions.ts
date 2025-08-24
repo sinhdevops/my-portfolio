@@ -3,7 +3,7 @@
 import { clerkClient } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
-import { Roles } from "@/types/globals";
+import { Roles } from "@/@types/globals";
 import { requireAdmin } from "@/utils/admin-protection";
 
 export async function setRole(data: { userId: string; role: Roles }) {

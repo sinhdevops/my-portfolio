@@ -1,5 +1,4 @@
 import Footer from "@/components/footer";
-import { SWRProvider } from "@/components/providers/swr-provider";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { Toaster } from "@/components/ui/toaster";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -9,6 +8,7 @@ import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 
 import "./globals.css";
+import ReactQueryProvider from "@/providers/react-query-provider";
 
 const BASE_URL =
 	process.env.NEXT_PUBLIC_BASE_URL ??
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 		"Portfolio Developer",
 		"Em Sinh Kay",
 	],
-	authors: [{ name: "Em Sinh Kay", url: "https://github.com/levansinh/" }],
+	authors: [{ name: "Em Sinh Kay", url: "https://github.com/sinhdevops/" }],
 	creator: "Em Sinh Kay",
 	publisher: "Em Sinh Kay",
 	robots: {
@@ -119,10 +119,10 @@ export default function RootLayout({
 						<div className="animate-blob animation-delay-4000 absolute bottom-20 left-1/3 h-72 w-72 rounded-full bg-pink-500 opacity-20 mix-blend-multiply blur-3xl filter"></div>
 					</div>
 					<div className="min-h-screen overflow-hidden bg-linear-to-b from-zinc-900 via-zinc-900 to-black text-white">
-						<SWRProvider>
+						<ReactQueryProvider>
 							{children}
 							<Footer />
-						</SWRProvider>
+						</ReactQueryProvider>
 						<Analytics />
 						<Toaster />
 					</div>
