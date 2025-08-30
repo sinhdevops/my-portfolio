@@ -11,7 +11,7 @@ import {
 	SiTypescript,
 	SiReactquery,
 } from "react-icons/si";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, MotionValue, useMotionValue, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 const SKILL = [
@@ -39,15 +39,19 @@ export function CreativeHero() {
 		return () => cancelAnimationFrame(reqRef.current!);
 	}, [rotation]);
 
+	function useSkillTransform(rotation: MotionValue<number>, i: number, total: number) {
+		const x = useTransform(rotation, (r) => Math.cos((i / total) * 2 * Math.PI + r) * 120);
+		const y = useTransform(rotation, (r) => Math.sin((i / total) * 2 * Math.PI + r) * 120);
+		return { x, y };
+	}
+
 	return (
 		<div className="relative mx-auto flex h-[400px] w-[400px] items-center justify-center">
 			<div className="absolute h-40 w-40 animate-pulse rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-3xl"></div>
 			<div className="absolute h-52 w-52 rounded-full border border-purple-400/30 blur-sm"></div>
 
 			{SKILL.map((skill, i) => {
-				const x = useTransform(rotation, (r) => Math.cos((i / SKILL.length) * 2 * Math.PI + r) * 120);
-				const y = useTransform(rotation, (r) => Math.sin((i / SKILL.length) * 2 * Math.PI + r) * 120);
-
+				const { x, y } = useSkillTransform(rotation, i, SKILL.length);
 				return (
 					<motion.div
 						key={i}

@@ -15,6 +15,5 @@ scripts/
 
 # Build artifacts
 .next/
-generated
 node_modules/
 *.log

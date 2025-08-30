@@ -7,7 +7,7 @@
 	"author": "Lê Văn Sinh <sinh.dev.ops@gmail.com>",
 	"scripts": {
 		"build": "next build",
-		"build:vercel": "NEXTJS_ENV=production next build",
+		"build:vercel": "prisma generate --schema=./prisma/schema.prisma && NEXTJS_ENV=production next build",
 		"dev": "next dev --turbo",
 		"lint": "next lint",
 		"format": "prettier --write .",
