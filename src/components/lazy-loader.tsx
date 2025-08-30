@@ -40,22 +40,6 @@ export const LazyChart = dynamic(() => import("recharts").then((mod) => mod.Area
 	loading: () => <ChartSkeleton />,
 });
 
-// Lazy load admin components
-export const LazyAdminPanel = dynamic(
-	() => import("@/app/(admin-only)/cms/page").then((mod) => ({ default: mod.default })),
-	{
-		ssr: false,
-		loading: () => (
-			<div className="flex h-64 items-center justify-center">
-				<div className="text-center">
-					<div className="mx-auto mb-2 h-8 w-8 animate-spin rounded-full border-2 border-purple-500 border-t-transparent" />
-					<div className="text-sm text-zinc-400">Loading Admin Panel...</div>
-				</div>
-			</div>
-		),
-	},
-);
-
 // Utility function to create lazy loaded components
 export function createLazyComponent<T extends ComponentType<any>>(
 	importFn: () => Promise<{ default: T } | T>,
