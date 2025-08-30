@@ -26,6 +26,12 @@ const SKILL = [
 	{ icon: <SiReactquery color="#ff00ff" /> },
 ];
 
+function useSkillTransform(rotation: MotionValue<number>, i: number, total: number) {
+	const x = useTransform(rotation, (r) => Math.cos((i / total) * 2 * Math.PI + r) * 120);
+	const y = useTransform(rotation, (r) => Math.sin((i / total) * 2 * Math.PI + r) * 120);
+	return { x, y };
+}
+
 export function CreativeHero() {
 	const rotation = useMotionValue(0);
 	const reqRef = useRef<number>(0);
@@ -38,12 +44,6 @@ export function CreativeHero() {
 		reqRef.current = requestAnimationFrame(animate);
 		return () => cancelAnimationFrame(reqRef.current!);
 	}, [rotation]);
-
-	function useSkillTransform(rotation: MotionValue<number>, i: number, total: number) {
-		const x = useTransform(rotation, (r) => Math.cos((i / total) * 2 * Math.PI + r) * 120);
-		const y = useTransform(rotation, (r) => Math.sin((i / total) * 2 * Math.PI + r) * 120);
-		return { x, y };
-	}
 
 	return (
 		<div className="relative mx-auto flex h-[400px] w-[400px] items-center justify-center">
