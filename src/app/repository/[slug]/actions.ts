@@ -21,7 +21,7 @@ export async function checkToken(token: string, slug: string) {
 	if (!project) return { valid: false, message: "Project not found" };
 
 	const now = new Date();
-	const validToken = project.allowTokens.find((t) => t.id === token && t.expireAt > now && !t.isUsed);
+	const validToken = project.allowTokens.find((t: any) => t.id === token && t.expireAt > now && !t.isUsed);
 
 	if (!validToken) {
 		return { valid: false, message: "Invalid or expired token" };
@@ -41,7 +41,7 @@ export async function grantAccess({ username, token, slug }: GrantAccessProps) {
 	if (!project) return { success: false, message: "Project not found" };
 
 	const now = new Date();
-	const validToken = project.allowTokens.find((t) => t.id === token && t.expireAt > now);
+	const validToken = project.allowTokens.find((t: any) => t.id === token && t.expireAt > now);
 	if (!validToken) return { success: false, message: "Invalid credentials" };
 
 	try {
