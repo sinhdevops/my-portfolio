@@ -45,7 +45,7 @@ export default function Portfolio() {
 			<AboutMeSection />
 
 			{/* Skills Section */}
-			{/* <SkillSection /> */}
+			<SkillSection />
 
 			{/* Projects Section */}
 			<ProjectSection />

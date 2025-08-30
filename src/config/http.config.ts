@@ -16,17 +16,7 @@ class HttpClient {
 		};
 	}
 
-	/*************  ✨ Windsurf Command ⭐  *************/
-	/**
-	 * Build a full URL from a relative URL and optional parameters.
-	 * @param url the relative URL
-	 * @param params optional parameters to append as query string parameters
-	 * @returns the full URL
-	 */
-	/*******  30aceb2c-de47-4894-bbef-98b3ad4d9d51  *******/ private buildUrl(
-		url: string,
-		params?: Record<string, string | number>,
-	) {
+	private buildUrl(url: string, params?: Record<string, string | number>) {
 		const fullUrl = new URL(url, this.baseURL);
 		if (params) {
 			Object.keys(params).forEach((key) => fullUrl.searchParams.append(key, String(params[key])));
@@ -51,6 +41,7 @@ class HttpClient {
 	}
 
 	get<T>(url: string, options?: RequestOptions) {
+		console.log(this.baseURL);
 		return this.request<T>("GET", url, options);
 	}
 

@@ -42,6 +42,3 @@ public/swe-worker*
 # clerk configuration (can include secrets)
 /.clerk/
 
-#prisma
-
-/prisma/

@@ -3,11 +3,10 @@ import { ProjectCardSkeleton } from "@/components/loading-skeleton";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
 import { Button } from "@/components/ui/button";
-
-const loading = false; // Replace with actual loading state
-const error = false; // Replace with actual error state
+import { useGitHubProjects } from "@/hooks/use-github-projects";
 
 function ProjectSection() {
+	const { data: projects, isPending, error } = useGitHubProjects();
 	return (
 		<section id="projects" className="relative py-32">
 			<div className="absolute inset-0 z-0">
@@ -19,7 +18,7 @@ function ProjectSection() {
 				<SectionHeading title="Featured Projects" subtitle="Some of my recent work" />
 
 				<div className="mt-16 grid auto-rows-fr grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-					{loading ? (
+					{isPending ? (
 						// Loading skeleton
 						<>
 							{[...Array(6)].map((_, index) => (
@@ -41,9 +40,7 @@ function ProjectSection() {
 					) : (
 						// Projects from GitHub API
 						<>
-							{PROJECTS.map((project) => (
-								<ProjectCard key={project.repoName} {...project} />
-							))}
+							{projects && projects.map((project) => <ProjectCard key={project.repoName} {...project} />)}
 							{/* Coming Soon card */}
 							<ProjectCard
 								title="Coming Soon"

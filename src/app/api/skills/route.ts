@@ -23,17 +23,14 @@ export async function GET(request: Request) {
 			);
 		}
 
-		// Create GitHub API instance
 		const githubAPI = createGitHubAPI();
 
 		console.log(`🔍 Fetching repositories for user: ${username}`);
 
-		// Fetch all repositories for the user (excluding forks)
 		const repositories = await githubAPI.getAllUserRepositories(username);
 
 		console.log(`📦 Found ${repositories.length} original repositories for ${username} (forks excluded)`);
 
-		// Fetch languages for each repository (in batches to avoid rate limits)
 		const languagesData: Record<string, Record<string, number>> = {};
 		const batchSize = 5;
 
@@ -54,7 +51,6 @@ export async function GET(request: Request) {
 				languagesData[repoName] = languages;
 			});
 
-			// Add a small delay between batches to respect rate limits
 			if (i + batchSize < repositories.length) {
 				await new Promise((resolve) => setTimeout(resolve, 100));
 			}

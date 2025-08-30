@@ -29,16 +29,18 @@ interface ProjectDetailPageProps {
 }
 
 export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
-	const { projects, loading, error } = useGitHubProjects();
+	const { data: projects, isPending, error } = useGitHubProjects();
+
 	const { slug } = use(params);
 
 	const project = useMemo(() => {
-		if (!projects.length) return null;
+		if (!projects?.length) return;
+
 		return findProjectBySlug(projects, slug);
 	}, [projects, slug]);
 
 	const relatedProjects = useMemo(() => {
-		if (!project || !projects.length) return [];
+		if (!project || !projects?.length) return [];
 		return getRelatedProjects(project, projects, 3);
 	}, [project, projects]);
 
@@ -55,7 +57,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
 		};
 	}, [project]);
 
-	if (loading) {
+	if (isPending) {
 		return (
 			<div className="min-h-screen bg-black text-white">
 				<div className="container mx-auto px-4 py-8">
@@ -81,7 +83,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
 				<div className="container mx-auto px-4 py-8">
 					<div className="text-center">
 						<h1 className="mb-4 text-2xl font-bold text-red-400">Error Loading Project</h1>
-						<p className="mb-4 text-zinc-400">{error}</p>
+						<p className="mb-4 text-zinc-400">{error.message}</p>
 						<Link href="/projects">
 							<Button variant="outline">
 								<ArrowLeft className="mr-2 h-4 w-4" />

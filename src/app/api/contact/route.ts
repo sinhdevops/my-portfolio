@@ -2,19 +2,21 @@ import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
 const contactFormSchema = z.object({
-	name: z.string().min(2, "Name must be at least 2 characters").max(50, "Name must be less than 50 characters"),
-	email: z.email("Please enter a valid email address"),
-	subject: z
-		.string()
-		.min(5, "Subject must be at least 5 characters")
-		.max(100, "Subject must be less than 100 characters"),
-	message: z
-		.string()
-		.min(10, "Message must be at least 10 characters")
-		.max(1000, "Message must be less than 1000 characters"),
+	payload: z.object({
+		name: z.string().min(1, "Name must be at least 2 characters").max(50, "Name must be less than 50 characters"),
+		email: z.email("Please enter a valid email address"),
+		subject: z
+			.string()
+			.min(5, "Subject must be at least 5 characters")
+			.max(100, "Subject must be less than 100 characters"),
+		message: z
+			.string()
+			.min(10, "Message must be at least 10 characters")
+			.max(1000, "Message must be less than 1000 characters"),
+	}),
 });
 
 export async function POST(request: NextRequest) {
@@ -31,12 +33,14 @@ export async function POST(request: NextRequest) {
 			return NextResponse.json({ error: `Validation failed: ${errors}` }, { status: 400 });
 		}
 
-		const { name, email, subject, message } = validationResult.data;
+		const {
+			payload: { name, email, subject, message },
+		} = validationResult.data;
 
 		// Send email using Resend
 		const { data, error } = await resend.emails.send({
 			from: "Contact Form <onboarding@resend.dev>",
-			to: ["lesinh3005@gmail.com"],
+			to: ["sinh.dev.ops@gmail.com"],
 			subject: `Contact Form: ${subject}`,
 			html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

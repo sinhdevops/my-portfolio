@@ -32,7 +32,6 @@ const SKILL_MAPPINGS: Record<
 		topics: string[];
 	}
 > = {
-	// Programming Languages
 	JavaScript: {
 		type: "Programming Language",
 		color: "bg-yellow-500",
@@ -47,48 +46,6 @@ const SKILL_MAPPINGS: Record<
 		languages: ["TypeScript"],
 		topics: ["typescript", "ts", "types", "type-safety"],
 	},
-	// Python: {
-	//   type: "Programming Language",
-	//   color: "bg-green-600",
-	//   keywords: ["python", "py", "django", "flask", "fastapi"],
-	//   languages: ["Python"],
-	//   topics: ["python", "django", "flask", "fastapi", "pandas", "numpy", "machine-learning", "ai"],
-	// },
-	// Java: {
-	//   type: "Programming Language",
-	//   color: "bg-red-600",
-	//   keywords: ["java", "spring", "maven", "gradle"],
-	//   languages: ["Java"],
-	//   topics: ["java", "spring", "spring-boot", "maven", "gradle", "android"],
-	// },
-	// "C#": {
-	//   type: "Programming Language",
-	//   color: "bg-purple-600",
-	//   keywords: ["csharp", "c#", "dotnet", ".net"],
-	//   languages: ["C#"],
-	//   topics: ["csharp", "dotnet", "asp-net", "unity", "xamarin"],
-	// },
-	// Go: {
-	//   type: "Programming Language",
-	//   color: "bg-cyan-600",
-	//   keywords: ["go", "golang"],
-	//   languages: ["Go"],
-	//   topics: ["go", "golang", "goroutines", "microservices"],
-	// },
-	// Rust: {
-	//   type: "Programming Language",
-	//   color: "bg-orange-600",
-	//   keywords: ["rust", "cargo"],
-	//   languages: ["Rust"],
-	//   topics: ["rust", "cargo", "systems-programming", "webassembly"],
-	// },
-	// PHP: {
-	//   type: "Programming Language",
-	//   color: "bg-indigo-600",
-	//   keywords: ["php", "laravel", "symfony", "composer"],
-	//   languages: ["PHP"],
-	//   topics: ["php", "laravel", "symfony", "wordpress", "composer"],
-	// },
 
 	// Frontend Frameworks
 	React: {
@@ -105,29 +62,7 @@ const SKILL_MAPPINGS: Record<
 		languages: ["JavaScript", "TypeScript"],
 		topics: ["nextjs", "next", "ssr", "static-site", "vercel"],
 	},
-	// Vue: {
-	//   type: "Frontend Framework",
-	//   color: "bg-green-500",
-	//   keywords: ["vue", "vuejs", "nuxt"],
-	//   languages: ["JavaScript", "TypeScript"],
-	//   topics: ["vue", "vuejs", "nuxt", "composition-api"],
-	// },
-	// Angular: {
-	//   type: "Frontend Framework",
-	//   color: "bg-red-500",
-	//   keywords: ["angular", "ng"],
-	//   languages: ["TypeScript"],
-	//   topics: ["angular", "angular2", "rxjs", "ngrx"],
-	// },
-	// Svelte: {
-	//   type: "Frontend Framework",
-	//   color: "bg-orange-500",
-	//   keywords: ["svelte", "sveltekit"],
-	//   languages: ["JavaScript", "TypeScript"],
-	//   topics: ["svelte", "sveltekit", "compiler"],
-	// },
 
-	// Backend & Runtime
 	"Node.js": {
 		type: "JavaScript Runtime",
 		color: "bg-green-600",
@@ -142,29 +77,7 @@ const SKILL_MAPPINGS: Record<
 		languages: ["JavaScript", "TypeScript"],
 		topics: ["express", "expressjs", "middleware", "api"],
 	},
-	// Django: {
-	//   type: "Backend Framework",
-	//   color: "bg-green-700",
-	//   keywords: ["django"],
-	//   languages: ["Python"],
-	//   topics: ["django", "python", "orm", "mvc"],
-	// },
-	// Flask: {
-	//   type: "Backend Framework",
-	//   color: "bg-blue-700",
-	//   keywords: ["flask"],
-	//   languages: ["Python"],
-	//   topics: ["flask", "python", "microframework", "api"],
-	// },
-	// "Spring Boot": {
-	//   type: "Backend Framework",
-	//   color: "bg-green-800",
-	//   keywords: ["spring", "spring-boot"],
-	//   languages: ["Java"],
-	//   topics: ["spring", "spring-boot", "java", "microservices"],
-	// },
 
-	// CSS & Styling
 	"Tailwind CSS": {
 		type: "CSS Framework",
 		color: "bg-teal-500",
@@ -172,13 +85,7 @@ const SKILL_MAPPINGS: Record<
 		languages: ["CSS"],
 		topics: ["tailwindcss", "tailwind", "utility-first", "css"],
 	},
-	// Bootstrap: {
-	//   type: "CSS Framework",
-	//   color: "bg-purple-500",
-	//   keywords: ["bootstrap"],
-	//   languages: ["CSS"],
-	//   topics: ["bootstrap", "responsive", "css", "ui"],
-	// },
+
 	Sass: {
 		type: "CSS Preprocessor",
 		color: "bg-pink-500",
@@ -187,21 +94,6 @@ const SKILL_MAPPINGS: Record<
 		topics: ["sass", "scss", "css", "preprocessor"],
 	},
 
-	// Databases
-	PostgreSQL: {
-		type: "Database",
-		color: "bg-blue-700",
-		keywords: ["postgres", "postgresql", "pg"],
-		languages: ["SQL", "PLpgSQL"],
-		topics: ["postgresql", "postgres", "sql", "database", "relational"],
-	},
-	MySQL: {
-		type: "Database",
-		color: "bg-blue-600",
-		keywords: ["mysql"],
-		languages: ["SQL"],
-		topics: ["mysql", "sql", "database", "mariadb"],
-	},
 	MongoDB: {
 		type: "Database",
 		color: "bg-green-500",
@@ -209,29 +101,7 @@ const SKILL_MAPPINGS: Record<
 		languages: ["JavaScript"],
 		topics: ["mongodb", "mongo", "nosql", "database", "document"],
 	},
-	Redis: {
-		type: "Database",
-		color: "bg-red-500",
-		keywords: ["redis"],
-		languages: [],
-		topics: ["redis", "cache", "in-memory", "database"],
-	},
 
-	// DevOps & Tools
-	Docker: {
-		type: "Containerization",
-		color: "bg-blue-500",
-		keywords: ["docker", "dockerfile", "container"],
-		languages: ["Dockerfile"],
-		topics: ["docker", "containerization", "devops", "kubernetes"],
-	},
-	// Kubernetes: {
-	//   type: "Container Orchestration",
-	//   color: "bg-blue-400",
-	//   keywords: ["kubernetes", "k8s", "kubectl"],
-	//   languages: ["YAML"],
-	//   topics: ["kubernetes", "k8s", "orchestration", "devops", "cloud"],
-	// },
 	Git: {
 		type: "Version Control System",
 		color: "bg-red-500",
@@ -239,45 +109,6 @@ const SKILL_MAPPINGS: Record<
 		languages: [],
 		topics: ["git", "version-control", "github", "gitlab", "vcs"],
 	},
-	// AWS: {
-	//   type: "Cloud Platform",
-	//   color: "bg-orange-500",
-	//   keywords: ["aws", "amazon", "lambda", "s3", "ec2"],
-	//   languages: [],
-	//   topics: ["aws", "amazon-web-services", "cloud", "lambda", "s3", "ec2"],
-	// },
-
-	// Query Languages & APIs
-	GraphQL: {
-		type: "Query Language",
-		color: "bg-pink-500",
-		keywords: ["graphql", "apollo", "relay"],
-		languages: ["GraphQL"],
-		topics: ["graphql", "apollo", "relay", "api", "query"],
-	},
-	REST: {
-		type: "API Architecture",
-		color: "bg-blue-500",
-		keywords: ["rest", "api", "restful"],
-		languages: [],
-		topics: ["rest", "api", "restful", "http", "json"],
-	},
-
-	// Testing
-	Jest: {
-		type: "Testing Framework",
-		color: "bg-red-400",
-		keywords: ["jest", "testing"],
-		languages: ["JavaScript", "TypeScript"],
-		topics: ["jest", "testing", "unit-testing", "javascript"],
-	},
-	// Cypress: {
-	//   type: "Testing Framework",
-	//   color: "bg-green-400",
-	//   keywords: ["cypress", "e2e"],
-	//   languages: ["JavaScript", "TypeScript"],
-	//   topics: ["cypress", "e2e", "testing", "automation"],
-	// },
 };
 
 export function mapRepositoriesToSkills(

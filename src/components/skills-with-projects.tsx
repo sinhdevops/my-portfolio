@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useSkills, useSkillsCache } from "@/hooks/use-skills";
+import { SkillsAPIResponse, useSkills } from "@/hooks/use-skills";
 import { cn } from "@/lib/utils";
 import { ExternalLink, Github, Loader2, RefreshCw } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
@@ -15,23 +15,29 @@ export function SkillsWithProjects() {
 	const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
 	// Fetch skills data from GitHub API
-	const { skills: skillsData, loading, error, isValidating, metadata } = useSkills();
-	const { refreshSkills } = useSkillsCache();
+	const { data: dataSkills, isPending } = useSkills();
+
+	if (!dataSkills) {
+		return <div>Loading skills...</div>;
+	}
+
+	const { metadata, skills } = dataSkills as SkillsAPIResponse;
+
+	console.log("Skills data:", dataSkills);
 
 	const handleSkillClick = (skillName: string) => {
 		setSelectedSkill(selectedSkill === skillName ? null : skillName);
 	};
 
 	const getSkillProjects = (skillName: string) => {
-		return skillsData.find((skill) => skill.name === skillName)?.projects || [];
+		return skills.find((skill) => skill.name === skillName)?.projects || [];
 	};
 
 	const getSkillData = (skillName: string) => {
-		return skillsData.find((skill) => skill.name === skillName);
+		return skills.find((skill) => skill.name === skillName);
 	};
 
-	// Show loading state
-	if (loading) {
+	if (isPending) {
 		return (
 			<div className="flex items-center justify-center py-12">
 				<div className="flex items-center gap-3">
@@ -42,27 +48,10 @@ export function SkillsWithProjects() {
 		);
 	}
 
-	// Show error state
-	if (error) {
-		return (
-			<div className="py-12 text-center">
-				<div className="space-y-4">
-					<p className="text-red-400">Failed to load skills: {error}</p>
-					<Button
-						onClick={() => refreshSkills()}
-						variant="outline"
-						className="border-purple-500 text-purple-400 hover:bg-purple-500/10"
-					>
-						<RefreshCw className="mr-2 h-4 w-4" />
-						Try Again
-					</Button>
-				</div>
-			</div>
-		);
-	}
+	console.log;
 
 	// Show empty state
-	if (!skillsData || skillsData.length === 0) {
+	if (!skills || skills.length === 0) {
 		return (
 			<div className="py-12 text-center">
 				<p className="text-zinc-400">
@@ -81,7 +70,7 @@ export function SkillsWithProjects() {
 						Found {metadata.totalSkills} skills from {metadata.totalRepositories} original repositories
 						{metadata.excludesForks && <span className="text-xs text-zinc-600"> (forks excluded)</span>}
 					</p>
-					{isValidating && (
+					{isPending && (
 						<div className="flex items-center justify-center gap-2">
 							<Loader2 className="h-4 w-4 animate-spin text-purple-500" />
 							<span className="text-xs text-zinc-400">Updating...</span>
@@ -92,7 +81,7 @@ export function SkillsWithProjects() {
 
 			{/* Skills Badges Grid */}
 			<div className="flex flex-wrap justify-center gap-3">
-				{skillsData.map((skill) => (
+				{skills.map((skill) => (
 					<motion.div
 						key={skill.name}
 						initial={{ opacity: 0, scale: 0.9 }}
@@ -286,16 +275,14 @@ export function SkillsWithProjects() {
 								@{metadata.username}
 							</Link>
 						</span>
-						<Button
-							onClick={() => refreshSkills()}
+						{/* <Button
 							variant="ghost"
 							size="sm"
 							className="h-6 px-2 text-xs hover:bg-white/20 hover:text-white"
-							disabled={isValidating}
 						>
 							<RefreshCw className={cn("mr-1 h-3 w-3", isValidating && "animate-spin")} />
 							Refresh
-						</Button>
+						</Button> */}
 					</div>
 				)}
 			</motion.div>
