@@ -7,22 +7,9 @@
 	"author": "Lê Văn Sinh <sinh.dev.ops@gmail.com>",
 	"scripts": {
 		"build": "next build",
-		"build:vercel": "prisma generate --schema=./prisma/schema.prisma && NEXTJS_ENV=production next build",
+		"build:vercel": "next build",
 		"dev": "next dev --turbo",
-		"lint": "next lint",
-		"format": "prettier --write .",
-		"start": "next start",
-		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build",
-		"prepare": "husky",
-		"setup-env": "./scripts/setup-env.sh",
-		"test-github": "node scripts/test-github-api.js",
-		"debug-env": "node scripts/debug-env.js",
-		"test-api": "node scripts/test-api-route.js",
-		"test-mcp": "node scripts/test-mcp-route.mjs",
-		"analyze": "ANALYZE=true next build",
-		"bundle-analysis": "node scripts/bundle-analysis.js",
-		"lighthouse": "lighthouse http://localhost:3000 --output=html --output-path=./lighthouse-report.html"
+		"start": "next start"
 	},
 	"dependencies": {
 		"@clerk/nextjs": "6.28.1",
