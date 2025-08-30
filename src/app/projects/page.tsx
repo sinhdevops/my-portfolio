@@ -14,14 +14,14 @@ import { ProjectCardSkeleton } from "@/components/loading-skeleton";
 import { cn } from "@/lib/utils";
 
 export default function ProjectsPage() {
-	const { projects, loading, error } = useGitHubProjects();
+	const { data: projects, isPending, error } = useGitHubProjects();
 	const [searchTerm, setSearchTerm] = useState("");
 	const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
 	// Get all unique tags from projects
 	const allTags = useMemo(() => {
 		const tags = new Set<string>();
-		projects.forEach((project) => {
+		projects?.forEach((project) => {
 			project.tags.forEach((tag) => tags.add(tag));
 		});
 		return Array.from(tags).sort();
@@ -29,7 +29,7 @@ export default function ProjectsPage() {
 
 	// Filter projects based on search term and selected tag
 	const filteredProjects = useMemo(() => {
-		return projects.filter((project) => {
+		return projects?.filter((project) => {
 			const matchesSearch =
 				project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
 				project.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -46,7 +46,7 @@ export default function ProjectsPage() {
 				<div className="container mx-auto px-4 py-8">
 					<div className="text-center">
 						<h1 className="mb-4 text-2xl font-bold text-red-400">Error Loading Projects</h1>
-						<p className="text-zinc-400">{error}</p>
+						<p className="text-zinc-400">{error.message}</p>
 						<Link href="/">
 							<Button variant="outline" className="mt-4">
 								<ArrowLeft className="mr-2 h-4 w-4" />
@@ -150,9 +150,9 @@ export default function ProjectsPage() {
 					className="mb-6"
 				>
 					<p className="text-zinc-400">
-						{loading
+						{isPending
 							? "Loading..."
-							: `${filteredProjects.length} project${filteredProjects.length !== 1 ? "s" : ""} found`}
+							: `${filteredProjects?.length} project${filteredProjects?.length !== 1 ? "s" : ""} found`}
 						{selectedTag && (
 							<span className="ml-2">
 								filtered by{" "}
@@ -167,13 +167,13 @@ export default function ProjectsPage() {
 
 			{/* Projects Grid */}
 			<div className="container mx-auto px-4 pb-16">
-				{loading ? (
+				{isPending ? (
 					<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 						{Array.from({ length: 6 }).map((_, index) => (
 							<ProjectCardSkeleton key={index} />
 						))}
 					</div>
-				) : filteredProjects.length > 0 ? (
+				) : filteredProjects?.length ? (
 					<motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
