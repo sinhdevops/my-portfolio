@@ -11,33 +11,42 @@ const PROJECTS = [
 			"A visually stunning, my portfolio website built with Next.js 15, Tailwind CSS, and TypeScript. Features animated UI, project showcases, and seamless integration with GitHub for dynamic project data.",
 		fallbackTags: ["Next.js", "TypeScript", "Tailwind CSS", "Portfolio", "GitHub API"],
 		image: "/repositories/my-portfolio.png",
-		demoUrl: "https://github.com/sinhdevops/my-portfolios",
+		demoUrl: "https://my-portfolio-green-five-43.vercel.app/",
+	},
+	{
+		title: "Viettel Đà Nẵng",
+		repoName: "sinhdevops/viettel-danang",
+		description:
+			"A modern, SEO-optimized web application for Viettel Đà Nẵng, built with Next.js 15, Tailwind CSS, and TypeScript. The project is designed to provide users with fast, reliable, and mobile-first access to Viettel’s services and information.",
+		fallbackTags: ["TypeScript", "React", "Next.js", "shadcn/ui", "tailwindcss", "zustands"],
+		image: "/repositories/viettel-danang.png",
+		demoUrl: "https://viettel-danang.vercel.app/",
 	},
 	{
 		title: "Netflix Clone",
 		repoName: "sinhdevops/netflix-clone",
 		description:
-			"A robust template for rapid development of Discord bots with multi-language support, modular command/event handling, and PostgreSQL integration.",
-		fallbackTags: ["TypeScript", "Discord.js", "PostgreSQL", "Node.js"],
-		image: "/repositories/discord.js-template-v14.png",
-		demoUrl: "https://github.com/sinhdevops/netflix-clone",
+			"A full-featured Netflix Clone built with Next.js 15, Tailwind CSS, and TypeScript. This project replicates the core streaming experience with a modern, responsive UI and a scalable architecture.",
+		fallbackTags: ["TypeScript", "React", "Next.js", "TDMB API"],
+		image: "/repositories/netflix-clone.png",
+		demoUrl: "https://netflix-clone-lovat-pi.vercel.app/",
 	},
 	{
 		title: "NextJS15-Template",
 		repoName: "sinhdevops/NextJS15-Template",
 		description:
-			"A modern, intuitive platform for managing Discord bots with real-time monitoring and powerful customization features.",
-		fallbackTags: ["TypeScript", "React", "Next.js", "Discord API"],
-		image: "/repositories/discord-bot-dashboard.png",
+			"A modern and customizable starter template built with Next.js 15, Tailwind CSS, and TypeScript. It provides a solid foundation for building fast, scalable, and production-ready web applications with clean architecture and best practices in mind.",
+		fallbackTags: ["TypeScript", "React", "Next.js", "shadcn/ui", "tailwindcss", "zustands"],
+		image: "/repositories/next-template-dashboard.png",
 		demoUrl: "https://github.com/sinhdevops/NextJS15-Template",
 	},
 	{
 		title: "Music Player App",
 		repoName: "sinhdevops/music-app",
 		description:
-			"A modern, intuitive platform for managing Discord bots with real-time monitoring and powerful customization features.",
-		fallbackTags: ["TypeScript", "React", "Next.js", "Discord API"],
-		image: "/repositories/discord-bot-dashboard.png",
+			"A modern web-based music player built with Next.js 15, Tailwind CSS, and TypeScript. The app provides a seamless and responsive user experience, allowing users to browse, search, and play tracks with an elegant interface.",
+		fallbackTags: ["TypeScript", "React", "Next.js", "zingmp3-api-full", "shadcn/ui", "tailwindcss", "zustands"],
+		image: "/repositories/music-app-dashboard.png",
 		demoUrl: "https://github.com/sinhdevops/music-app",
 	},
 ];
