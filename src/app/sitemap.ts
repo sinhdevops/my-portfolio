@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 			priority: 1,
 		},
 		{
-			url: `${baseUrl}/sinhlv-cv-frontend.pdf`,
+			url: `${baseUrl}/sinhlv-cv.pdf`,
 			lastModified: currentDate,
 			changeFrequency: "monthly",
 			priority: 0.6,

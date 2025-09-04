@@ -50,7 +50,7 @@ function AboutMeSection() {
 							</div>
 
 							<div className="mt-8">
-								<Link href="/sinhlv-cv-frontend.pdf" target="_blank" rel="noopener noreferrer">
+								<Link href="/sinhlv-cv.pdf" target="_blank" rel="noopener noreferrer">
 									<Button className="bg-zinc-800 text-white hover:bg-zinc-700">
 										<Download className="mr-2 h-4 w-4" />
 										Download Resume
