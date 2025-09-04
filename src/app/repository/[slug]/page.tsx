@@ -11,7 +11,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 
-import { checkToken, grantAccess } from "./actions";
 import ErrorPage from "./error";
 import SuccessPage from "./success";
 
@@ -65,37 +64,37 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 		}
 
 		const validateToken = async () => {
-			try {
-				const result = await checkToken(token, slug);
-				setTokenValid(result.valid);
-				if (!result.valid) {
-					setErrorMessage(result.message ?? "Server error");
-				}
-			} catch {
-				setTokenValid(false);
-				setErrorMessage("Error validating token");
-			} finally {
-				setLoading(false);
-			}
+			// try {
+			// 	const result = await checkToken(token, slug);
+			// 	setTokenValid(result.valid);
+			// 	if (!result.valid) {
+			// 		setErrorMessage(result.message ?? "Server error");
+			// 	}
+			// } catch {
+			// 	setTokenValid(false);
+			// 	setErrorMessage("Error validating token");
+			// } finally {
+			// 	setLoading(false);
+			// }
 		};
 
 		validateToken();
 	}, [token, slug]);
 
 	const onSubmit = () => {
-		startTransition(async () => {
-			const result = await grantAccess({ username, token: token!, slug });
-			if (result.success) {
-				setSubmitStatus("success");
-			} else {
-				setSubmitStatus("error");
-				setErrorMessage(result.message);
-			}
-			toast({
-				title: result.success ? "Success" : "Failed",
-				description: result.message,
-			});
-		});
+		// startTransition(async () => {
+		// 	const result = await grantAccess({ username, token: token!, slug });
+		// 	if (result.success) {
+		// 		setSubmitStatus("success");
+		// 	} else {
+		// 		setSubmitStatus("error");
+		// 		setErrorMessage(result.message);
+		// 	}
+		// 	toast({
+		// 		title: result.success ? "Success" : "Failed",
+		// 		description: result.message,
+		// 	});
+		// });
 	};
 
 	// Loading states

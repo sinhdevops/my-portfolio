@@ -1,6 +1,6 @@
 import { ContactForm } from "@/components/contact-form";
 import { SectionHeading } from "@/components/section-heading";
-import { Mail, Linkedin, Github, MessageCircle, Facebook } from "lucide-react";
+import { Mail, Github, Facebook } from "lucide-react";
 import { SiZalo } from "react-icons/si";
 
 function ContactSection() {

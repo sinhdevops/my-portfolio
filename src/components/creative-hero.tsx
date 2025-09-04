@@ -26,10 +26,40 @@ const SKILL = [
 	{ icon: <SiReactquery color="#ff00ff" /> },
 ];
 
+// custom hook
 function useSkillTransform(rotation: MotionValue<number>, i: number, total: number) {
 	const x = useTransform(rotation, (r) => Math.cos((i / total) * 2 * Math.PI + r) * 120);
 	const y = useTransform(rotation, (r) => Math.sin((i / total) * 2 * Math.PI + r) * 120);
 	return { x, y };
+}
+
+// tách thành component riêng để gọi hook hợp lệ
+function SkillIcon({
+	rotation,
+	index,
+	total,
+	icon,
+}: {
+	rotation: MotionValue<number>;
+	index: number;
+	total: number;
+	icon: React.ReactNode;
+}) {
+	const { x, y } = useSkillTransform(rotation, index, total);
+
+	return (
+		<motion.div
+			className="absolute text-4xl"
+			style={{ x, y }}
+			whileHover={{
+				scale: 1.5,
+				rotate: 15,
+				filter: "drop-shadow(0 0 10px rgba(255,255,255,0.8))",
+			}}
+		>
+			{icon}
+		</motion.div>
+	);
 }
 
 export function CreativeHero() {
@@ -50,23 +80,9 @@ export function CreativeHero() {
 			<div className="absolute h-40 w-40 animate-pulse rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-3xl"></div>
 			<div className="absolute h-52 w-52 rounded-full border border-purple-400/30 blur-sm"></div>
 
-			{SKILL.map((skill, i) => {
-				const { x, y } = useSkillTransform(rotation, i, SKILL.length);
-				return (
-					<motion.div
-						key={i}
-						className="absolute text-4xl"
-						style={{ x, y }}
-						whileHover={{
-							scale: 1.5,
-							rotate: 15,
-							filter: "drop-shadow(0 0 10px rgba(255,255,255,0.8))",
-						}}
-					>
-						{skill.icon}
-					</motion.div>
-				);
-			})}
+			{SKILL.map((skill, i) => (
+				<SkillIcon key={i} rotation={rotation} index={i} total={SKILL.length} icon={skill.icon} />
+			))}
 		</div>
 	);
 }

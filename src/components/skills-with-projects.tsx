@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SkillsAPIResponse, useSkills } from "@/hooks/use-skills";
 import { cn } from "@/lib/utils";
-import { ExternalLink, Github, Loader2, RefreshCw } from "lucide-react";
+import { ExternalLink, Github, Loader2 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
@@ -47,8 +47,6 @@ export function SkillsWithProjects() {
 			</div>
 		);
 	}
-
-	console.log;
 
 	// Show empty state
 	if (!skills || skills.length === 0) {
