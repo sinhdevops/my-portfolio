@@ -6,15 +6,35 @@ import { cn } from "@/lib/utils";
 
 const experiences = [
 	{
-		title: "Frontend Developer",
+		title: "Frontend Developer Intern",
 		company: "TNHH MTV LIFT SOFTWARE",
-		period: "9/2023 - 3/2025",
+		period: "9/2023 - 11/2023",
+		phaseDescription:
+			"Completed a 2-month internship to learn company technologies and workflows. Focused on ReactJS, TypeScript, and Tailwind CSS while contributing to training projects and building a solid foundation in frontend development.",
+		technologies: ["ReactJS", "TypeScript", "TailwindCSS"],
+		phase: "Phase I: Internship",
+	},
+	{
+		title: "Frontend Developer (Fresher)",
+		company: "TNHH MTV LIFT SOFTWARE",
+		period: "11/2023 - 1/2024",
 		description:
 			"Developed and maintained advertising websites and admin dashboards for content and data management. Focused on optimizing user interfaces and enhancing user experience while ensuring performance and system stability. Collaborated on building new features, integrating APIs, and streamlining frontend development workflows.",
-		technologies: ["ReactJS", "React Query", "CoreUI", "NextUI", "Shadcn UI", "TypeScript", "TailwindCSS"],
-		phase: "Phase I: Frontend Developer",
 		phaseDescription:
-			"Transitioned from a frontend developer to building a deeper understanding of system architecture and product scalability.",
+			"Worked with a professional team for 2 months on admin dashboard projects. Implemented features, integrated APIs, and optimized UI/UX for data management workflows in collaboration with senior developers.",
+		technologies: ["ReactJS", "React Query", "CoreUI", "NextUI", "TypeScript", "TailwindCSS"],
+		phase: "Phase II: Fresher Developer",
+	},
+	{
+		title: "Frontend Developer (Junior)",
+		company: "TNHH MTV LIFT SOFTWARE",
+		description:
+			"Developed and maintained advertising websites and admin dashboards for content and data management. Focused on optimizing user interfaces and enhancing user experience while ensuring performance and system stability. Collaborated on building new features, integrating APIs, and streamlining frontend development workflows.",
+		period: "1/2024 - 3/2025",
+		phaseDescription:
+			"Led the GRM_ANA project from scratch, including project setup, architecture design, and full feature development. Built scalable components, ensured performance optimization, and delivered a production-ready application.",
+		technologies: ["Next.js", "Shadcn UI", "React Query", "TypeScript", "TailwindCSS"],
+		phase: "Phase III: Junior Developer",
 	},
 ];
 
@@ -67,7 +87,7 @@ export function Timeline() {
 								<p className="mb-4 text-sm text-zinc-500 italic">{experience.phaseDescription}</p>
 
 								{/* Description */}
-								<p className="mb-6 leading-relaxed text-zinc-300">{experience.description}</p>
+								<p className="mb-6 leading-relaxed text-zinc-300">{experience.phaseDescription}</p>
 
 								{/* Technologies */}
 								<div className="flex flex-wrap gap-2">
