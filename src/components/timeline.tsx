@@ -39,7 +39,8 @@ const experiences = [
 	{
 		title: "Frontend Developer Freelacer",
 		company: "Word From Home",
-		description: "",
+		description:
+			"Worked as an outsourcing Frontend Developer on multiple projects for clients from Japan and Singapore. Collaborated with international teams to build, maintain, and optimize modern web applications with a strong focus on performance, UI consistency, and SEO.",
 		period: "5/2024 - now",
 		phaseDescription: "Led",
 		technologies: ["Next.js", "Shadcn UI", "React Query", "TypeScript", "TailwindCSS", "Next SEO"],
