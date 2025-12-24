@@ -36,6 +36,15 @@ const experiences = [
 		technologies: ["Next.js", "Shadcn UI", "React Query", "TypeScript", "TailwindCSS"],
 		phase: "Phase III: Junior Developer",
 	},
+	{
+		title: "Frontend Developer Freelacer",
+		company: "Word From Home",
+		description: "",
+		period: "5/2024 - now",
+		phaseDescription: "Led",
+		technologies: ["Next.js", "Shadcn UI", "React Query", "TypeScript", "TailwindCSS", "Next SEO"],
+		phase: "Phase IV: Junior Developer",
+	},
 ];
 
 export function Timeline() {
