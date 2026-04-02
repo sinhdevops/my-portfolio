@@ -5,6 +5,14 @@ import { formatGitHubTopics, sortTopicsByPriority } from "@/lib/github-topics";
 
 const PROJECTS = [
 	{
+		title: "STEMKey",
+		repoName: "sinhdevops/english-center",
+		description: "A modern English learning center platform built with Next.js 15, TypeScript, and Tailwind CSS. Includes course management, student interaction, Supabase integration, form validation with Zod & React Hook Form, and SEO optimization for performance and accessibility.",
+		fallbackTags: ["Next.js", "TypeScript", "Tailwind CSS", "supabase", "zod", "SEO", "React hook form", "swiper/react", "zustand"],
+		image: "/repositories/english-center.png",
+		demoUrl: "https://english-center-chi.vercel.app",
+	},
+	{
 		title: "My Portfolio Website",
 		repoName: "sinhdevops/my-portfolio",
 		description:
