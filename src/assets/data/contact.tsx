@@ -10,7 +10,7 @@ export const CONTACTS = [
 		label: "GitHub",
 	},
 	{
-		href: "mailto:lesinh3005@gmail.com",
+		href: "mailto:sinh.dev.ops@gmail.com",
 		icon: <Mail className="h-5 w-5" />,
 		label: "Email",
 	},

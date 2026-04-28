@@ -1,17 +1,15 @@
 "use client";
 
-// import { AuthButton } from "@/components/auth-button";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const navItems = [
 	{ name: "About", href: "#about" },
-	// { name: "Skills", href: "#skills" },
 	{ name: "Projects", href: "#projects" },
 	{ name: "Experience", href: "#experience" },
 	{ name: "Contact", href: "#contact" },
@@ -24,22 +22,17 @@ export function FloatingNav() {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			if (window.scrollY > 100) {
-				setIsVisible(true);
-			} else {
-				setIsVisible(false);
-			}
+			setIsVisible(window.scrollY > 100);
 		};
-
-		window.addEventListener("scroll", handleScroll);
+		window.addEventListener("scroll", handleScroll, { passive: true });
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	const handleNavClick = () => {
-		if (isMobile) {
-			setIsOpen(false);
-		}
-	};
+	const toggleOpen = useCallback(() => setIsOpen((prev) => !prev), []);
+
+	const handleNavClick = useCallback(() => {
+		if (isMobile) setIsOpen(false);
+	}, [isMobile]);
 
 	return (
 		<>
@@ -64,12 +57,11 @@ export function FloatingNav() {
 								<span className="text-white">Kay</span>
 							</Link>
 							<div className="ml-2 flex flex-shrink-0 items-center gap-2">
-								{/* <AuthButton /> */}
 								<Button
 									variant="ghost"
 									size="icon"
 									className="pr-4 text-zinc-400 hover:bg-transparent hover:text-zinc-400"
-									onClick={() => setIsOpen(!isOpen)}
+									onClick={toggleOpen}
 								>
 									{isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
 								</Button>
@@ -99,7 +91,6 @@ export function FloatingNav() {
 										Resume
 									</Button>
 								</Link>
-								{/* <AuthButton /> */}
 							</div>
 						</div>
 					)}

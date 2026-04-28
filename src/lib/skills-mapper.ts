@@ -109,6 +109,78 @@ const SKILL_MAPPINGS: Record<
 		languages: [],
 		topics: ["git", "version-control", "github", "gitlab", "vcs"],
 	},
+
+	Supabase: {
+		type: "Backend-as-a-Service",
+		color: "bg-emerald-500",
+		keywords: ["supabase"],
+		languages: ["TypeScript", "JavaScript"],
+		topics: ["supabase", "supabase-db", "supabase-auth", "supabase-storage", "baas"],
+	},
+
+	PostgreSQL: {
+		type: "Database",
+		color: "bg-blue-500",
+		keywords: ["postgres", "postgresql", "pg", "supabase"],
+		languages: ["PLpgSQL"],
+		topics: ["postgresql", "postgres", "sql", "relational-database", "supabase"],
+	},
+
+	Prisma: {
+		type: "ORM",
+		color: "bg-indigo-500",
+		keywords: ["prisma"],
+		languages: ["TypeScript", "JavaScript"],
+		topics: ["prisma", "prisma-orm", "orm", "database-schema"],
+	},
+
+	Docker: {
+		type: "DevOps",
+		color: "bg-blue-400",
+		keywords: ["docker", "dockerfile", "compose", "container"],
+		languages: ["Dockerfile"],
+		topics: ["docker", "docker-compose", "container", "containerization", "devops"],
+	},
+
+	GraphQL: {
+		type: "Query Language",
+		color: "bg-pink-600",
+		keywords: ["graphql", "apollo", "gql"],
+		languages: ["GraphQL"],
+		topics: ["graphql", "apollo", "apollo-graphql", "gql", "api"],
+	},
+
+	Redux: {
+		type: "State Management",
+		color: "bg-purple-600",
+		keywords: ["redux", "zustand", "recoil", "jotai"],
+		languages: ["TypeScript", "JavaScript"],
+		topics: ["redux", "redux-toolkit", "zustand", "state-management", "flux"],
+	},
+
+	"Framer Motion": {
+		type: "Animation Library",
+		color: "bg-fuchsia-500",
+		keywords: ["framer", "motion", "animation", "animate"],
+		languages: ["TypeScript", "JavaScript"],
+		topics: ["framer-motion", "animation", "motion", "react-animation"],
+	},
+
+	"REST API": {
+		type: "API Architecture",
+		color: "bg-orange-500",
+		keywords: ["rest", "api", "restful", "endpoint"],
+		languages: ["TypeScript", "JavaScript"],
+		topics: ["rest-api", "restful", "api", "backend", "http"],
+	},
+
+	"React Query": {
+		type: "Data Fetching",
+		color: "bg-red-400",
+		keywords: ["react-query", "tanstack", "query"],
+		languages: ["TypeScript", "JavaScript"],
+		topics: ["react-query", "tanstack-query", "data-fetching", "swr", "cache"],
+	},
 };
 
 export function mapRepositoriesToSkills(

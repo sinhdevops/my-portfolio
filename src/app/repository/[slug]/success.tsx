@@ -10,7 +10,7 @@ interface SuccessPageProps {
 }
 
 export default function SuccessPage({ repoName }: SuccessPageProps) {
-	const orgRepo = `xirothedev-minor/${repoName.split("/")[1]}`;
+	const orgRepo = `sinhdevops-minor/${repoName.split("/")[1]}`;
 
 	return (
 		<div className="min-h-screen bg-zinc-900 px-4 py-8">

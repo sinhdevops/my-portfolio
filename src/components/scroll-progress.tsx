@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useScroll, useSpring } from "motion/react";
-import { useEffect, useState } from "react";
+import { motion, useMotionValueEvent, useScroll, useSpring } from "motion/react";
+import { useState } from "react";
 
 export function ScrollProgress() {
 	const { scrollYProgress } = useScroll();
@@ -13,15 +13,9 @@ export function ScrollProgress() {
 
 	const [isVisible, setIsVisible] = useState<boolean>(false);
 
-	useEffect(() => {
-		const handleScroll = () => {
-			setIsVisible(window.scrollY > 100);
-		};
-
-		handleScroll();
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
+	useMotionValueEvent(scrollYProgress, "change", (latest) => {
+		setIsVisible(latest > 0.01);
+	});
 
 	return (
 		<motion.div

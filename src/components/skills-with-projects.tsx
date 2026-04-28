@@ -8,34 +8,13 @@ import { cn } from "@/lib/utils";
 import { ExternalLink, Github, Loader2 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 export function SkillsWithProjects() {
 	const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
 	const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
-	// Fetch skills data from GitHub API
 	const { data: dataSkills, isPending } = useSkills();
-
-	if (!dataSkills) {
-		return <div>Loading skills...</div>;
-	}
-
-	const { metadata, skills } = dataSkills as SkillsAPIResponse;
-
-	console.log("Skills data:", dataSkills);
-
-	const handleSkillClick = (skillName: string) => {
-		setSelectedSkill(selectedSkill === skillName ? null : skillName);
-	};
-
-	const getSkillProjects = (skillName: string) => {
-		return skills.find((skill) => skill.name === skillName)?.projects || [];
-	};
-
-	const getSkillData = (skillName: string) => {
-		return skills.find((skill) => skill.name === skillName);
-	};
 
 	if (isPending) {
 		return (
@@ -48,7 +27,18 @@ export function SkillsWithProjects() {
 		);
 	}
 
-	// Show empty state
+	if (!dataSkills) {
+		return (
+			<div className="py-12 text-center">
+				<p className="text-zinc-400">
+					No skills found. Make sure you have repositories with topics and languages.
+				</p>
+			</div>
+		);
+	}
+
+	const { metadata, skills } = dataSkills as SkillsAPIResponse;
+
 	if (!skills || skills.length === 0) {
 		return (
 			<div className="py-12 text-center">
@@ -59,9 +49,50 @@ export function SkillsWithProjects() {
 		);
 	}
 
+	return <SkillsContent metadata={metadata} skills={skills} isPending={isPending} />;
+}
+
+type SkillsContentProps = {
+	metadata: SkillsAPIResponse["metadata"];
+	skills: SkillsAPIResponse["skills"];
+	isPending: boolean;
+};
+
+function SkillsContent({ metadata, skills, isPending }: SkillsContentProps) {
+	const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
+	const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+
+	const skillMap = useMemo(
+		() => new Map(skills.map((skill) => [skill.name, skill])),
+		[skills],
+	);
+
+	const handleSkillClick = useCallback((skillName: string) => {
+		setSelectedSkill((prev) => (prev === skillName ? null : skillName));
+	}, []);
+
+	const handleMouseEnter = useCallback((skillName: string) => {
+		setHoveredSkill(skillName);
+	}, []);
+
+	const handleMouseLeave = useCallback(() => {
+		setHoveredSkill(null);
+	}, []);
+
+	const clearSelection = useCallback(() => setSelectedSkill(null), []);
+
+	const selectedSkillData = useMemo(
+		() => (selectedSkill ? skillMap.get(selectedSkill) : null),
+		[selectedSkill, skillMap],
+	);
+
+	const selectedProjects = useMemo(
+		() => selectedSkillData?.projects ?? [],
+		[selectedSkillData],
+	);
+
 	return (
 		<div className="space-y-8">
-			{/* Header with metadata */}
 			{metadata && (
 				<div className="space-y-2 text-center">
 					<p className="text-sm text-zinc-500">
@@ -99,8 +130,8 @@ export function SkillsWithProjects() {
 								hoveredSkill === skill.name && "shadow-md",
 							)}
 							onClick={() => handleSkillClick(skill.name)}
-							onMouseEnter={() => setHoveredSkill(skill.name)}
-							onMouseLeave={() => setHoveredSkill(null)}
+							onMouseEnter={() => handleMouseEnter(skill.name)}
+							onMouseLeave={handleMouseLeave}
 						>
 							<span className="relative z-10 flex items-center gap-2">
 								<div className={cn("h-2 w-2 rounded-full", skill.color)} />
@@ -114,7 +145,7 @@ export function SkillsWithProjects() {
 
 			{/* Selected Skill Details */}
 			<AnimatePresence mode="wait">
-				{selectedSkill && (
+				{selectedSkill && selectedSkillData && (
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
@@ -126,31 +157,28 @@ export function SkillsWithProjects() {
 							<CardHeader>
 								<div className="flex items-center justify-between">
 									<div className="flex items-center gap-3">
-										<div
-											className={cn("h-4 w-4 rounded-full", getSkillData(selectedSkill)?.color)}
-										/>
+										<div className={cn("h-4 w-4 rounded-full", selectedSkillData.color)} />
 										<CardTitle className="text-2xl text-white">{selectedSkill}</CardTitle>
 										<Badge variant="outline" className="border-purple-400 text-purple-400">
-											{getSkillData(selectedSkill)?.type}
+											{selectedSkillData.type}
 										</Badge>
 									</div>
 									<Button
 										variant="ghost"
 										size="sm"
-										onClick={() => setSelectedSkill(null)}
+										onClick={clearSelection}
 										className="text-zinc-400 hover:bg-white/30"
 									>
 										✕
 									</Button>
 								</div>
 								<CardDescription className="text-zinc-400">
-									Projects utilizing {selectedSkill} ({getSkillProjects(selectedSkill).length}{" "}
-									projects)
+									Projects utilizing {selectedSkill} ({selectedProjects.length} projects)
 								</CardDescription>
 							</CardHeader>
 							<CardContent>
 								<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-									{getSkillProjects(selectedSkill).map((project, index) => (
+									{selectedProjects.map((project, index) => (
 										<motion.div
 											key={`${selectedSkill}-${project.repoUrl}-${index}`}
 											initial={{ opacity: 0, y: 20 }}
@@ -273,14 +301,6 @@ export function SkillsWithProjects() {
 								@{metadata.username}
 							</Link>
 						</span>
-						{/* <Button
-							variant="ghost"
-							size="sm"
-							className="h-6 px-2 text-xs hover:bg-white/20 hover:text-white"
-						>
-							<RefreshCw className={cn("mr-1 h-3 w-3", isValidating && "animate-spin")} />
-							Refresh
-						</Button> */}
 					</div>
 				)}
 			</motion.div>

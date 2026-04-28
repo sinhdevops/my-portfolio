@@ -1,5 +1,8 @@
 "use client";
 
+// Server-side metadata is exported from the layout above this page.
+// This file stays "use client" because it uses useGitHubProjects hook.
+
 import { ArrowLeft, ArrowUpRight, Clock, Code2, GitFork, Github, Globe, Star } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";

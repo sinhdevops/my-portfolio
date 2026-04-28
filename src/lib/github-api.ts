@@ -233,7 +233,7 @@ class GitHubAPI {
 		username: string,
 	): Promise<RestEndpointMethodTypes["repos"]["get"]["response"]["data"]> {
 		const [sourceOwner, sourceRepo] = repoName.split("/");
-		const targetOrg = "xirothedev-minor";
+		const targetOrg = "sinhdevops-minor";
 
 		try {
 			let forkedRepo;
@@ -376,108 +376,3 @@ export async function fetchRepositoryWithFallback<T extends NonNullable<unknown>
 		};
 	}
 }
-
-// Function to update project after detecting rename
-// export async function syncRepositoryName(projectId: string): Promise<{
-// 	success: boolean;
-// 	updated?: boolean;
-// 	newRepoName?: string;
-// 	message?: string;
-// }> {
-// 	try {
-// 		const project = await prisma.project.findUnique({ where: { id: projectId } });
-// 		if (!project) {
-// 			return { success: false, message: "Project not found" };
-// 		}
-
-// 		const githubAPI = createGitHubAPI();
-// 		const result = await githubAPI.getRepository(project.repoName);
-
-// 		if (result.wasRenamed) {
-// 			// Check if new name conflicts with existing project
-// 			const existingProject = await prisma.project.findUnique({
-// 				where: { repoName: result.newName! },
-// 			});
-
-// 			if (existingProject && existingProject.id !== projectId) {
-// 				return {
-// 					success: false,
-// 					message: `Cannot update: Another project already uses repository "${result.newName}"`,
-// 				};
-// 			}
-
-// 			// Update project with new repository name
-// 			await prisma.project.update({
-// 				where: { id: projectId },
-// 				data: { repoName: result.newName! },
-// 			});
-
-// 			console.log(`🔄 Repository renamed: ${result.originalName} -> ${result.newName}`);
-
-// 			return {
-// 				success: true,
-// 				updated: true,
-// 				newRepoName: result.newName!,
-// 				message: `Repository name updated from "${result.originalName}" to "${result.newName}"`,
-// 			};
-// 		}
-
-// 		return {
-// 			success: true,
-// 			updated: false,
-// 			message: "Repository name is up to date",
-// 		};
-// 	} catch (error) {
-// 		console.error("Error syncing repository name:", error);
-// 		return {
-// 			success: false,
-// 			message: "Failed to sync repository name",
-// 		};
-// 	}
-// }
-
-// // Bulk sync all projects
-// export async function syncAllRepositoryNames(): Promise<{
-// 	success: boolean;
-// 	totalProjects: number;
-// 	updatedProjects: number;
-// 	errors: string[];
-// }> {
-// 	try {
-// 		const projects = await prisma.project.findMany();
-// 		const results = {
-// 			totalProjects: projects.length,
-// 			updatedProjects: 0,
-// 			errors: [] as string[],
-// 		};
-
-// 		for (const project of projects) {
-// 			try {
-// 				const syncResult = await syncRepositoryName(project.id);
-// 				if (syncResult.updated) {
-// 					results.updatedProjects++;
-// 				}
-// 				if (!syncResult.success) {
-// 					results.errors.push(`${project.slug}: ${syncResult.message}`);
-// 				}
-// 			} catch (error: any) {
-// 				results.errors.push(`${project.slug}: ${error.message}`);
-// 			}
-
-// 			// Rate limiting - wait between requests
-// 			await new Promise((resolve) => setTimeout(resolve, 100));
-// 		}
-
-// 		return {
-// 			success: true,
-// 			...results,
-// 		};
-// 	} catch (error: any) {
-// 		return {
-// 			success: false,
-// 			totalProjects: 0,
-// 			updatedProjects: 0,
-// 			errors: [error.message],
-// 		};
-// 	}
-// }

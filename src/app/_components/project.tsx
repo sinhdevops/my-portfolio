@@ -1,3 +1,5 @@
+"use client";
+
 import { ProjectCardSkeleton } from "@/components/loading-skeleton";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";

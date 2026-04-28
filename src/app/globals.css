@@ -73,7 +73,7 @@
 		50% {
 			background-position: 100% 50%;
 		}
-		0% {
+		100% {
 			background-position: 0% 50%;
 		}
 	}
@@ -90,14 +90,6 @@
 	}
 }
 
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
 	*,
 	::after,
@@ -203,26 +195,22 @@
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-	width: 8px;
-	height: 8px;
+	width: 6px;
+	height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-	background: #18181b; /* zinc-900 */
+	background: #18181b;
 	border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-	/* background: linear-gradient(135deg, #a855f7, #ec4899);  */
-	background:#fff; /*white*/
+	background: linear-gradient(135deg, #a855f7, #ec4899);
 	border-radius: 4px;
-	transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	/* background: linear-gradient(135deg, #9333ea, #db2777);  */
-	background:#fff; /*white*/
-	transform: scale(1.05);
+	background: linear-gradient(135deg, #9333ea, #db2777);
 }
 
 ::-webkit-scrollbar-corner {
@@ -232,74 +220,7 @@
 /* Firefox scrollbar */
 * {
 	scrollbar-width: thin;
-	scrollbar-color: #fff #18181b;
-}
-
-[data-support-yes],
-[data-support-no] {
-	display: none;
-}
-
-@supports (view-transition-name: test) {
-	[data-support] [data-support-yes] {
-		display: inline;
-	}
-	[data-support] [data-support-no] {
-		display: none;
-	}
-}
-
-@supports not (view-transition-name: test) {
-	[data-support] [data-support-yes] {
-		display: none;
-	}
-	[data-support] [data-support-no] {
-		display: inline;
-	}
-}
-
-/* Safari */
-@supports (-webkit-hyphens: none) and (not (-moz-appearance: none)) {
-	[data-support] [data-support-yes] {
-		display: none;
-	}
-	[data-support] [data-support-no] {
-		display: inline;
-	}
-}
-
-::view-transition-old(auth-form),
-::view-transition-new(auth-form) {
-	animation-duration: 400ms;
-	animation-timing-function: ease-in-out;
-}
-
-::view-transition-old(auth-form) {
-	animation-name: slide-out-to-left;
-	z-index: 1;
-}
-
-::view-transition-new(auth-form) {
-	animation-name: slide-in-from-right;
-	z-index: 2;
-}
-
-@keyframes slide-out-to-left {
-	to {
-		opacity: 0;
-		transform: translateX(-3.125rem); /* ~50px = 3.125rem */
-	}
-}
-
-@keyframes slide-in-from-right {
-	from {
-		opacity: 0;
-		transform: translateX(3.125rem); /* ~50px */
-	}
-	to {
-		opacity: 1;
-		transform: translateX(0);
-	}
+	scrollbar-color: #a855f7 #18181b;
 }
 
 /* Custom list styling for README viewer */
@@ -317,7 +238,7 @@
 	position: absolute;
 	left: -1.5rem;
 	font-weight: 500;
-	color: rgb(212 212 216); /* text-zinc-300 */
+	color: rgb(212 212 216);
 	min-width: 1.25rem;
 }
 
@@ -325,5 +246,5 @@
 	content: "•";
 	position: absolute;
 	left: -1rem;
-	color: rgb(212 212 216); /* text-zinc-300 */
+	color: rgb(212 212 216);
 }

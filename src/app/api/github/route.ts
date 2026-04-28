@@ -7,10 +7,30 @@ const PROJECTS = [
 	{
 		title: "STEMKey",
 		repoName: "sinhdevops/english-center",
-		description: "A modern English learning center platform built with Next.js 15, TypeScript, and Tailwind CSS. Includes course management, student interaction, Supabase integration, form validation with Zod & React Hook Form, and SEO optimization for performance and accessibility.",
-		fallbackTags: ["Next.js", "TypeScript", "Tailwind CSS", "supabase", "zod", "SEO", "React hook form", "swiper/react", "zustand"],
+		description:
+			"A modern English learning center platform built with Next.js 15, TypeScript, and Tailwind CSS. Includes course management, student interaction, Supabase integration, form validation with Zod & React Hook Form, and SEO optimization for performance and accessibility.",
+		fallbackTags: [
+			"Next.js",
+			"TypeScript",
+			"Tailwind CSS",
+			"supabase",
+			"zod",
+			"SEO",
+			"React hook form",
+			"swiper/react",
+			"zustand",
+		],
 		image: "/repositories/english-center.png",
 		demoUrl: "https://english-center-chi.vercel.app",
+	},
+	{
+		title: "Viorawine",
+		repoName: "sinhdevops/viorawine",
+		description:
+			"A premium wine e-commerce platform with a modern, elegant UI. Built with Next.js and TypeScript, featuring product catalog, multilingual support, and a seamless shopping experience optimized for performance and SEO.",
+		fallbackTags: ["Next.js", "TypeScript", "Supabase", "next-intl", "React Hook Form", "Zod", "Swiper", "Motion"],
+		image: "/repositories/viorawine.png",
+		demoUrl: "https://viorawine.com",
 	},
 	{
 		title: "My Portfolio Website",
@@ -64,8 +84,6 @@ export async function GET() {
 		// Try multiple sources for GitHub token
 		const githubToken = process.env.GITHUB_TOKEN;
 
-		console.log("GitHub Token:", githubToken);
-
 		if (!githubToken) {
 			console.warn("GitHub token not found, using fallback data");
 			return NextResponse.json({
@@ -85,10 +103,6 @@ export async function GET() {
 
 		// Create GitHub API instance with caching
 		const githubAPI = createGitHubAPI();
-
-		// Log cache statistics
-		const cacheStats = githubAPI.getCacheStats();
-		console.log("📊 Cache stats:", cacheStats);
 
 		// Parallelize API calls for better performance
 		const projectPromises = PROJECTS.map(async (project) => {
@@ -120,7 +134,6 @@ export async function GET() {
 					isFromGitHub: data.topics && data.topics.length > 0,
 				};
 			} catch (error) {
-				console.log(2);
 				console.error(
 					`❌ Error processing ${project.repoName}:`,
 					error instanceof Error ? error.message : error,
@@ -139,7 +152,6 @@ export async function GET() {
 				};
 			}
 		});
-		console.log(1);
 		// Wait for all promises to resolve
 		const projectsData = await Promise.all(projectPromises);
 

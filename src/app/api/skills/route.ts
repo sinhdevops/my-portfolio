@@ -25,11 +25,7 @@ export async function GET(request: Request) {
 
 		const githubAPI = createGitHubAPI();
 
-		console.log(`🔍 Fetching repositories for user: ${username}`);
-
 		const repositories = await githubAPI.getAllUserRepositories(username);
-
-		console.log(`📦 Found ${repositories.length} original repositories for ${username} (forks excluded)`);
 
 		const languagesData: Record<string, Record<string, number>> = {};
 		const batchSize = 5;
@@ -56,16 +52,8 @@ export async function GET(request: Request) {
 			}
 		}
 
-		console.log(`🔤 Fetched languages for ${Object.keys(languagesData).length} repositories`);
-
-		// Map repositories to skills
 		const skills = mapRepositoriesToSkills(repositories, languagesData);
-
-		console.log(`🎯 Mapped repositories to ${skills.length} skills`);
-
-		// Log cache statistics
 		const cacheStats = githubAPI.getCacheStats();
-		console.log("📊 Cache stats:", cacheStats);
 
 		return NextResponse.json({
 			skills,

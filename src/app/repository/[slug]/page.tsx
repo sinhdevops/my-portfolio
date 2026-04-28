@@ -135,7 +135,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 		return <SuccessPage repoName={project.repoName} />;
 	}
 
-	const orgRepo = `xirothedev-minor/${project.repoName.split("/")[1]}`;
+	const orgRepo = `sinhdevops-minor/${project.repoName.split("/")[1]}`;
 
 	return (
 		<div className="min-h-screen bg-zinc-900 px-4 py-8">

@@ -9,7 +9,7 @@ class HttpClient {
 	private defaultHeaders: HeadersInit;
 
 	constructor(baseURL?: string, defaultHeaders: HeadersInit = {}) {
-		this.baseURL = baseURL || process.env.NEXT_PUBLIC_BASE_URL || "https://api.example.com";
+		this.baseURL = baseURL || process.env.NEXT_PUBLIC_BASE_URL || "";
 		this.defaultHeaders = {
 			"Content-Type": "application/json",
 			...defaultHeaders,
@@ -17,7 +17,13 @@ class HttpClient {
 	}
 
 	private buildUrl(url: string, params?: Record<string, string | number>) {
-		const fullUrl = new URL(url, this.baseURL);
+		// In browser: use window.location.origin so it works on any domain (dev + prod)
+		// On server without env: fall back to localhost for dev
+		const base =
+			this.baseURL ||
+			(typeof window !== "undefined" ? window.location.origin : "http://localhost:3000");
+
+		const fullUrl = new URL(url, base);
 		if (params) {
 			Object.keys(params).forEach((key) => fullUrl.searchParams.append(key, String(params[key])));
 		}
@@ -41,19 +47,18 @@ class HttpClient {
 	}
 
 	get<T>(url: string, options?: RequestOptions) {
-		console.log(this.baseURL);
 		return this.request<T>("GET", url, options);
 	}
 
-	post<T>(url: string, body?: any, options?: RequestOptions) {
+	post<T>(url: string, body?: unknown, options?: RequestOptions) {
 		return this.request<T>("POST", url, { body: JSON.stringify(body), ...options });
 	}
 
-	put<T>(url: string, body?: any, options?: RequestOptions) {
+	put<T>(url: string, body?: unknown, options?: RequestOptions) {
 		return this.request<T>("PUT", url, { body: JSON.stringify(body), ...options });
 	}
 
-	patch<T>(url: string, body?: any, options?: RequestOptions) {
+	patch<T>(url: string, body?: unknown, options?: RequestOptions) {
 		return this.request<T>("PATCH", url, { body: JSON.stringify(body), ...options });
 	}
 
