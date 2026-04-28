@@ -2,12 +2,10 @@ import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
-
 const contactFormSchema = z.object({
 	payload: z.object({
 		name: z.string().min(1, "Name must be at least 2 characters").max(50, "Name must be less than 50 characters"),
-		email: z.email("Please enter a valid email address"),
+		email: z.string().email("Please enter a valid email address"),
 		subject: z
 			.string()
 			.min(5, "Subject must be at least 5 characters")
@@ -20,6 +18,7 @@ const contactFormSchema = z.object({
 });
 
 export async function POST(request: NextRequest) {
+	const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 	try {
 		const body = await request.json();
 
